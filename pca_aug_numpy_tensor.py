@@ -114,7 +114,7 @@ def demo_cifar_tensor():
 
 from sklearn.datasets import load_iris
 
-def demo_keras_iris():
+def demo_iris_tensor():
     data = load_iris()
     X = data["data"]
 
@@ -131,4 +131,4 @@ def demo_keras_iris():
 
 if __name__ == "__main__":
     #demo_cifar_tensor()
-    demo_keras_iris()
+    demo_iris_tensor()
