@@ -114,6 +114,7 @@ def demo_cifar_tensor():
 
 from sklearn.datasets import load_iris
 
+# PCA Color Augmentation for structured data
 def demo_iris_tensor():
     data = load_iris()
     X = data["data"]
@@ -129,6 +130,24 @@ def demo_iris_tensor():
         ax.set_title(data["feature_names"][i])
     plt.show()
 
+# You can do categorical data augmentation!
+def demo_iris_categorical():
+    data = load_iris()
+    # Reshape by category
+    X = data["data"].reshape(3, 50, 4)
+    # Categorical data augmentation and reshape to the original shape
+    X_aug = pca_color_augmentation_tensor(X, clipping=False).reshape(-1, 4)
+
+    indices = np.arange(X_aug.shape[0])
+    cm = plt.get_cmap("Set1")
+    plt.figure(figsize=(8,8))
+    for i in range(X_aug.shape[1]):
+        ax = plt.subplot(2, 2, i+1)
+        ax.plot(indices, X_aug[:,i], ".", color=cm(i))
+        ax.set_title(data["feature_names"][i])
+    plt.show()
+
 if __name__ == "__main__":
     #demo_cifar_tensor()
-    demo_iris_tensor()
+    #demo_iris_tensor()
+    demo_iris_categorical()
